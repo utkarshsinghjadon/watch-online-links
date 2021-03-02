@@ -24,8 +24,6 @@ const setupTheories = (data) => {
         </li>
       `;
       html += li
-    });
-  
     guideList.innerHTML = html;
   } else {
     guideList.innerHTML = '<h5 class="center-align"> Login to view the Theories.</h5>';
