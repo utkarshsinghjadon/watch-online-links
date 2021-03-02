@@ -1,20 +1,8 @@
-var docRef = db.collection("Hotstar").doc("livetelecast");
-// docRef.get().then((doc) => {
-//     if (doc.exists) {
-        
-//         console.log("Document data:", doc.data());
-//     } else {
-//         // doc.data() will be undefined in this case
-//         console.log("No such document!");
-//     }
-// }).catch((error) => {
-//     console.log("Error getting document:", error);
-// });
+const docRef = db.collection("Hotstar").doc("livetelecast");
 const guideList= document.getElementById('list');
-//setup guides
-const setupTheories = (data) => {
-  if (data.length) {
-    let html = '';
+docRef.get().then((doc) => {
+    if (doc.exists) {
+        let html = '';
     const theory = doc.data();
       const li = `
       <li>
@@ -24,10 +12,13 @@ const setupTheories = (data) => {
         </li>
       `;
       html += li
-    guideList.innerHTML = html;
-  } else {
-    guideList.innerHTML = '<h5 class="center-align"> Login to view the Theories.</h5>';
-  }
-  };
-
-docRef.get().then(snapshot => setupTheories(snapshot.data()))
+        guideList.innerHTML = html;
+     console.log("Document data:", doc.data());
+    }    else {
+        // doc.data() will be undefined in this case
+        guideList.innerHTML = '<h5 class="center-align"> Login to view the Theories.</h5>';
+        console.log("No such document!");
+    }
+}).catch((error) => {
+    console.log("Error getting document:", error);
+});
